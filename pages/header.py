@@ -9,3 +9,6 @@ class Header:
 
     def open_burger_menu(self):
         browser.element(MainPageLocators.BURGER_MENU).click()
+
+
+header = Header()

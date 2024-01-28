@@ -2,8 +2,8 @@ import pytest
 from selene import browser
 
 from settings import ConfigBrowser
-from pages.header import Header
-from pages.login_page import LoginPage
+from pages.header import header
+from pages.login_page import login
 
 """
 Параметризуйте фикстуру несколькими вариантами размеров окна
@@ -20,12 +20,9 @@ def test_github_desktop(setup_browser):
             browser.config.window_height == ConfigBrowser.window_height_mobile_3):
         pytest.skip(reason='Тест только для desktop')
 
-    header = Header()
-    login_page = LoginPage()
-
     browser.open('/')
     header.click_on_sign_in_button()
-    login_page.assert_open_page()
+    login.assert_open_page()
 
 
 def test_github_mobile(setup_browser):
@@ -37,10 +34,7 @@ def test_github_mobile(setup_browser):
             browser.config.window_height == ConfigBrowser.window_height_desktop_3):
         pytest.skip(reason='Тест только для mobile')
 
-    header = Header()
-    login_page = LoginPage()
-
     browser.open('/')
     header.open_burger_menu()
     header.click_on_sign_in_button()
-    login_page.assert_open_page()
+    login.assert_open_page()
